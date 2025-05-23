@@ -1,0 +1,75 @@
+---
+const PROJECTS = [
+  {
+    title: "Gestor de personajes de Dungeons and Dragons",
+    description:
+      "Proyecto Fullstack de una App web para gestionar personajes y notas de Dungeons and Dragons. Con un buscador de información sobre clases, especies y habilidades. Es un 'clon' de la app oficial de Dungeons and Dragons pero añadiendo funcionalidades extra.",
+    image: "public/projects/screenshot.png",
+    link: "https://dnd.igoruve.com/",
+    github: "https://github.com/Igoruve/dungeons-and-databases-frontend",
+    tags: [
+      "React",
+      "Tailwind",
+      "JavaScript",
+      "Framer-motion",
+      "JWT",
+      "Local Storage",
+    ],
+  },
+  {
+    title: "Pomello",
+    description:
+      "Un clon del Trello que permite gestionar tareas y proyectos. Incluye un cronómetro para trabajar con el método de trabajo Pomodoro",
+    image: "",
+    link: "",
+    github: "",
+    tags: [
+      "React",
+      "Tailwind",
+      "JavaScript",
+      "Framer-motion",
+      "JWT",
+      "Local Storage",
+    ],
+  },
+];
+---
+
+{
+  PROJECTS.map((project) => (
+    <article class="bg-slate-800 p-4 rounded-lg my-10">
+      <img
+        src={project.image}
+        alt={`Captura de pantalla del proyecto ${project.title}`}
+        class="w-full h-96 object-cover rounded-t-lg "
+      />
+      <h3 class="text-xl font-bold my-4">{project.title}</h3>
+      <p class="text-slate-500">{project.description}</p>
+      <div class="flex justify-between mt-4 mx-2">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={project.github}
+          class="text-emerald-500 underline"
+        >
+          Ver en GitHub
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={project.link}
+          class="text-emerald-500 underline pb-4"
+        >
+          Ver Proyecto
+        </a>
+      </div>
+      <ul class="mt-2 flex flex-row flex-wrap">
+        {project.tags.map((tag) => (
+          <li class="bg-gray-700 text-gray-300 px-2 py-1 text-sm mr-2">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    </article>
+  ))
+}
