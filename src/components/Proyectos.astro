@@ -1,9 +1,9 @@
 ---
 const PROJECTS = [
   {
-    title: "Gestor de personajes de Dungeons and Dragons",
+    title: "Gestor de personajes de Dungeons and Dragons (avanzado)",
     description:
-      "Proyecto Fullstack de una App web para gestionar personajes y notas de Dungeons and Dragons. Con un buscador de información sobre clases, especies y habilidades. Es un 'clon' de la app oficial de Dungeons and Dragons pero añadiendo funcionalidades extra.",
+      "Aplicación web Fullstack diseñada para fans de Dungeons and Dragons que buscan una herramienta completa y personalizable para gestionar sus campañas. Permite crear, editar y llevar un seguimiento detallado de tus personajes, con campos para estadísticas, habilidades, inventario y mucho más.\n Incluye un buscador inteligente de información actualizada sobre clases, especies, habilidades y trasfondos, ideal para consultar durante la creación del personaje o en mitad de una partida.\n  Inspirado en la app oficial de D&D Beyond, este proyecto va un paso más allá añadiendo funcionalidades como un sistema de notas personalizadas, organización por campañas, animaciones fluidas con Framer Motion, y una interfaz más ligera y centrada en la experiencia del usuario.",
     image: "public/projects/screenshot.png",
     link: "https://dnd.igoruve.com/",
     github: "https://github.com/Igoruve/dungeons-and-databases-frontend",
@@ -17,17 +17,17 @@ const PROJECTS = [
     ],
   },
   {
-    title: "Pomello",
+    title: "Pomello (En desarollo) ",
     description:
-      "Un clon del Trello que permite gestionar tareas y proyectos. Incluye un cronómetro para trabajar con el método de trabajo Pomodoro",
-    image: "",
+      "Pomello es una potente herramienta de productividad que combina la gestión de proyectos al estilo Trello con la eficacia del método Pomodoro. Organiza tus proyectos en tableros con listas y tareas arrastrables, gracias a la integración de dnd-kit, y mantén el foco usando un cronómetro Pomodoro incorporado.\n  Cada sesión de trabajo queda registrada, permitiéndote visualizar estadísticas detalladas y gráficas sobre el tiempo invertido en cada tarea o proyecto.\n Ideal para desarrolladores, equipos ágiles o freelancers que quieran gestionar su tiempo y trabajo de forma eficiente y visual.",
+    image: "public/projects/screenshot2.png",
     link: "",
-    github: "",
+    github: "https://github.com/Igoruve/pomello-fullstack",
     tags: [
       "React",
       "Tailwind",
       "JavaScript",
-      "Framer-motion",
+      "dnd-kit",
       "JWT",
       "Local Storage",
     ],
@@ -37,15 +37,28 @@ const PROJECTS = [
 
 {
   PROJECTS.map((project) => (
-    <article class="bg-slate-800 p-4 rounded-lg my-10">
-      <img
-        src={project.image}
-        alt={`Captura de pantalla del proyecto ${project.title}`}
-        class="w-full h-96 object-cover rounded-t-lg "
-      />
-      <h3 class="text-xl font-bold my-4">{project.title}</h3>
-      <p class="text-slate-500">{project.description}</p>
-      <div class="flex justify-between mt-4 mx-2">
+    <article class="bg-slate-800 p-4 rounded-lg my-12 sm:my-24 shadow-md">
+      {project.link ? (
+        <a href={project.link} target="_blank" rel="noopener noreferrer">
+          <img
+            src={project.image}
+            alt={`Captura de pantalla del proyecto ${project.title}`}
+            class="w-full h-60 sm:h-96 object-cover rounded-t-lg"
+          />
+        </a>
+      ) : (
+        <img
+          src={project.image}
+          alt={`Captura de pantalla del proyecto ${project.title}`}
+          class="w-full h-60 sm:h-96 object-cover rounded-t-lg"
+        />
+      )}
+
+      <h3 class="text-lg sm:text-xl font-bold my-4">{project.title}</h3>
+      <p class="text-slate-400 text-sm sm:text-base whitespace-pre-line">
+        {project.description}
+      </p>
+      <div class="flex flex-col sm:flex-row justify-between mt-4 gap-2 sm:gap-0">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -54,18 +67,22 @@ const PROJECTS = [
         >
           Ver en GitHub
         </a>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={project.link}
-          class="text-emerald-500 underline pb-4"
-        >
-          Ver Proyecto
-        </a>
+        {project.link ? (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={project.link}
+            class="text-emerald-500 underline"
+          >
+            Ver Proyecto
+          </a>
+        ) : (
+          <span class="text-slate-500 text-md">Proyecto en desarrollo</span>
+        )}
       </div>
-      <ul class="mt-2 flex flex-row flex-wrap">
+      <ul class="mt-4 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <li class="bg-gray-700 text-gray-300 px-2 py-1 text-sm mr-2">
+          <li class="bg-gray-700 text-gray-300 px-2 py-1 text-xs sm:text-sm rounded">
             {tag}
           </li>
         ))}
