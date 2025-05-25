@@ -1,7 +1,7 @@
 ---
 const PROJECTS = [
   {
-    title: "Gestor de personajes de Dungeons and Dragons (avanzado)",
+    title: "Gestor de personajes de Dungeons and Dragons",
     description:
       "Aplicación web Fullstack diseñada para fans de Dungeons and Dragons que buscan una herramienta completa y personalizable para gestionar sus campañas. Permite crear, editar y llevar un seguimiento detallado de tus personajes, con campos para estadísticas, habilidades, inventario y mucho más.\n Incluye un buscador inteligente de información actualizada sobre clases, especies, habilidades y trasfondos, ideal para consultar durante la creación del personaje o en mitad de una partida.\n  Inspirado en la app oficial de D&D Beyond, este proyecto va un paso más allá añadiendo funcionalidades como un sistema de notas personalizadas, organización por campañas, animaciones fluidas con Framer Motion, y una interfaz más ligera y centrada en la experiencia del usuario.",
     image: "src/assets/screenshot.png",
@@ -54,11 +54,15 @@ const PROJECTS = [
         />
       )}
 
-      <h3 class="text-lg sm:text-xl font-bold my-4">{project.title}</h3>
-      <p class="text-slate-400 text-sm sm:text-base whitespace-pre-line">
+      <h3 class="text-xl sm:text-2xl font-bold my-4 text-slate-100">
+        {project.title}
+      </h3>
+
+      <p class="text-base sm:text-lg whitespace-pre-line text-slate-400">
         {project.description}
       </p>
-      <div class="flex flex-col sm:flex-row justify-between mt-4 gap-2 sm:gap-0">
+
+      <div class="flex flex-col sm:flex-row justify-between my-8 gap-2 sm:gap-0">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -80,9 +84,10 @@ const PROJECTS = [
           <span class="text-slate-500 text-md">Proyecto en desarrollo</span>
         )}
       </div>
-      <ul class="mt-4 flex flex-wrap gap-2">
+
+      <ul class="flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <li class="bg-gray-700 text-gray-300 px-2 py-1 text-xs sm:text-sm rounded">
+          <li class="bg-gray-700 text-gray-300 px-3 py-1 text-sm sm:text-base rounded">
             {tag}
           </li>
         ))}

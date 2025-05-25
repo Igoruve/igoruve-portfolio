@@ -8,6 +8,7 @@ import Email from "../components/icons/Email.astro";
 import SectionContainer from "../components/SectionContainer.astro";
 import Proyectos from "../components/Proyectos.astro";
 import Code from "../components/icons/Code.astro";
+import Person from "../components/icons/Person.astro";
 
 import Sobremi from "../components/Sobremi.astro";
 import Contacto from "../components/Contacto.astro";
@@ -18,8 +19,10 @@ import Contacto from "../components/Contacto.astro";
   description="Portfolio de igoruve, desarrollador y programador frontend. Especializado en interfaz y experiencia de usuario."
 >
   <main>
-    <SectionContainer>
-      <div class="mt-24 sm:mt-48 px-4">
+    <section
+      class="w-full bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)] pb-24 pt-32"
+    >
+      <div class="mt-24 sm:mt-48 px-4 w-full lg:w-[740px] mx-auto">
         <div class="flex flex-col sm:flex-row gap-4 items-center mb-10">
           <img
             class="rounded-full w-20 h-20"
@@ -28,17 +31,20 @@ import Contacto from "../components/Contacto.astro";
           />
           <Badge>Disponible para trabajar</Badge>
         </div>
-        <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4">
-          Holi, soy igoruve
-        </h1>
-        <h2 class="text-white/90 text-xl sm:text-2xl">
-          <strong class="text-emerald-600">Desarrollador Frontend</strong> de Bilbao,
-          <abbr title="España">ES.</abbr> Especializado en Interfaz y Experiencia
-          de Usuario.
-        </h2>
+        <div class="text-center sm:text-start">
+          <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4">
+            Holi, soy igoruve
+          </h1>
+          <h2 class="text-white/90 text-xl sm:text-2xl">
+            <strong class="text-emerald-600">Desarrollador Frontend</strong> de Bilbao.
+            <br />
+            Especializado en Interfaz y Experiencia de Usuario.
+          </h2>
+        </div>
         <Contacto />
       </div>
-    </SectionContainer>
+    </section>
+
     <SectionContainer id="proyectos">
       <div class="flex flex-row gap-x-3 items-center text-white/90">
         <Code />
@@ -50,7 +56,10 @@ import Contacto from "../components/Contacto.astro";
       id="sobremi"
       class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0 pb-32"
     >
-      <h2 class="self-start text-2xl sm:text-3xl">Sobre mí</h2>
+      <div class="flex flex-row gap-x-3 items-center text-white/90">
+        <Person />
+        <h2 class="self-start text-2xl sm:text-3xl">Sobre mí</h2>
+      </div>
       <Sobremi />
     </div>
 
@@ -58,7 +67,8 @@ import Contacto from "../components/Contacto.astro";
       id="contacto"
       class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0 pb-24"
     >
-      <h2 class="text-lg sm:text-xl">Contacto</h2>
+      <h2 class="text-xl sm:text-lg text-center sm:text-left">Contacto</h2>
+
       <Contacto />
     </div>
   </main>
