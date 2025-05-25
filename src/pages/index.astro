@@ -1,7 +1,7 @@
 ---
 import Badge from "../components/Badge.astro";
 import Layout from "../layouts/Layout.astro";
-import perfil from "../assets/foto-perfil.jpg";
+import perfil from "/public/fotoperfil.webp";
 import Linkedin from "../components/icons/Linkedin.astro";
 import GitHub from "../components/icons/GitHub.astro";
 import Email from "../components/icons/Email.astro";
@@ -20,10 +20,10 @@ import Contacto from "../components/Contacto.astro";
 >
   <main>
     <section
-      class="w-full bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)] pb-24 pt-32"
+      class="w-full h-screen flex justify-center items-center bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)]"
     >
-      <div class="mt-24 sm:mt-48 px-4 w-full lg:w-[740px] mx-auto">
-        <div class="flex flex-col sm:flex-row gap-4 items-center mb-10">
+      <div class="px-4 w-full lg:w-[740px] mx-auto pt-24">
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
           <img
             class="rounded-full w-20 h-20"
             src={perfil.src}
@@ -31,7 +31,7 @@ import Contacto from "../components/Contacto.astro";
           />
           <Badge>Disponible para trabajar</Badge>
         </div>
-        <div class="text-center sm:text-start">
+        <div class="text-center sm:text-start mt-6">
           <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4">
             Holi, soy igoruve
           </h1>
@@ -54,7 +54,7 @@ import Contacto from "../components/Contacto.astro";
     </SectionContainer>
     <div
       id="sobremi"
-      class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0 pb-32"
+      class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0"
     >
       <div class="flex flex-row gap-x-3 items-center text-white/90">
         <Person />
@@ -65,10 +65,8 @@ import Contacto from "../components/Contacto.astro";
 
     <div
       id="contacto"
-      class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0 pb-24"
+      class="justify-center items-center flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0 pb-24"
     >
-      <h2 class="text-xl sm:text-lg text-center sm:text-left">Contacto</h2>
-
       <Contacto />
     </div>
   </main>

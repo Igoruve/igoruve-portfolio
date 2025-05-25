@@ -2,9 +2,10 @@
 const PROJECTS = [
   {
     title: "Gestor de personajes de Dungeons and Dragons",
+    date: "Abril-Mayo 2025 (En desarollo)",
     description:
       "Aplicación web Fullstack diseñada para fans de Dungeons and Dragons que buscan una herramienta completa y personalizable para gestionar sus campañas. Permite crear, editar y llevar un seguimiento detallado de tus personajes, con campos para estadísticas, habilidades, inventario y mucho más.\n Incluye un buscador inteligente de información actualizada sobre clases, especies, habilidades y trasfondos, ideal para consultar durante la creación del personaje o en mitad de una partida.\n  Inspirado en la app oficial de D&D Beyond, este proyecto va un paso más allá añadiendo funcionalidades como un sistema de notas personalizadas, organización por campañas, animaciones fluidas con Framer Motion, y una interfaz más ligera y centrada en la experiencia del usuario.",
-    image: "src/assets/screenshot.png",
+    image: "/projects/screenshot.webp",
     link: "https://dnd.igoruve.com/",
     github: "https://github.com/Igoruve/dungeons-and-databases-frontend",
     tags: [
@@ -17,10 +18,11 @@ const PROJECTS = [
     ],
   },
   {
-    title: "Pomello (En desarollo) ",
+    title: "Pomello ",
+    date: "Mayo 2025 (En desarollo)",
     description:
       "Pomello es una potente herramienta de productividad que combina la gestión de proyectos al estilo Trello con la eficacia del método Pomodoro. Organiza tus proyectos en tableros con listas y tareas arrastrables, gracias a la integración de dnd-kit, y mantén el foco usando un cronómetro Pomodoro incorporado.\n  Cada sesión de trabajo queda registrada, permitiéndote visualizar estadísticas detalladas y gráficas sobre el tiempo invertido en cada tarea o proyecto.\n Ideal para desarrolladores, equipos ágiles o freelancers que quieran gestionar su tiempo y trabajo de forma eficiente y visual.",
-    image: "src/assets/screenshot2.png",
+    image: "/projects/screenshot2.webp",
     link: "",
     github: "https://github.com/Igoruve/pomello-fullstack",
     tags: [
@@ -37,7 +39,7 @@ const PROJECTS = [
 
 {
   PROJECTS.map((project) => (
-    <article class="bg-slate-800 p-4 rounded-lg my-12 sm:my-24 shadow-md">
+    <article class="bg-slate-800 p-4 sm:p-6 rounded-lg my-12 sm:my-24 shadow-md">
       {project.link ? (
         <a href={project.link} target="_blank" rel="noopener noreferrer">
           <img
@@ -57,20 +59,13 @@ const PROJECTS = [
       <h3 class="text-xl sm:text-2xl font-bold my-4 text-slate-100">
         {project.title}
       </h3>
+      <p class="text-sm sm:text-base text-slate-500 mb-2">{project.date}</p>
 
       <p class="text-base sm:text-lg whitespace-pre-line text-slate-400">
         {project.description}
       </p>
 
       <div class="flex flex-col sm:flex-row justify-between my-8 gap-2 sm:gap-0">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={project.github}
-          class="text-emerald-500 underline"
-        >
-          Ver en GitHub
-        </a>
         {project.link ? (
           <a
             target="_blank"
@@ -81,13 +76,22 @@ const PROJECTS = [
             Ver Proyecto
           </a>
         ) : (
-          <span class="text-slate-500 text-md">Proyecto en desarrollo</span>
+          <span class="text-slate-500 text-md" />
         )}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={project.github}
+          class="text-emerald-500 underline"
+        >
+          Ver en GitHub
+        </a>
       </div>
 
       <ul class="flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <li class="bg-gray-700 text-gray-300 px-3 py-1 text-sm sm:text-base rounded">
+          <li class="text-gray-300 px-3 py-1 text-sm sm:text-base rounded">
+            <span class="text-emerald-500"># </span>
             {tag}
           </li>
         ))}
