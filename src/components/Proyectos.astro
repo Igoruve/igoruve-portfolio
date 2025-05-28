@@ -1,8 +1,27 @@
 ---
 const PROJECTS = [
   {
-    title: "Gestor de personajes de Dungeons and Dragons",
+    title: "Pomello ",
+    date: "Mayo 2025 (En desarollo)",
+    duration: "2 semanas",
+    description:
+      "Pomello es una potente herramienta de productividad que combina la gestión de proyectos al estilo Trello con la eficacia del método Pomodoro. Organiza tus proyectos en tableros con listas y tareas arrastrables, gracias a la integración de dnd-kit, y mantén el foco usando un cronómetro Pomodoro incorporado.\n  Cada sesión de trabajo queda registrada, permitiéndote visualizar estadísticas detalladas y gráficas sobre el tiempo invertido en cada tarea o proyecto.\n Ideal para desarrolladores, equipos ágiles o freelancers que quieran gestionar su tiempo y trabajo de forma eficiente y visual.",
+    image: "/projects/screenshot2.webp",
+    link: "https://pomello.igoruve.com/",
+    github: "https://github.com/Igoruve/pomello-fullstack",
+    tags: [
+      "React",
+      "Tailwind",
+      "JavaScript",
+      "dnd-kit",
+      "JWT",
+      "Local Storage",
+    ],
+  },
+  {
+    title: "Dungeons & Databases",
     date: "Abril-Mayo 2025 (En desarollo)",
+    duration: "1 mes",
     description:
       "Aplicación web Fullstack diseñada para fans de Dungeons and Dragons que buscan una herramienta completa y personalizable para gestionar sus campañas. Permite crear, editar y llevar un seguimiento detallado de tus personajes, con campos para estadísticas, habilidades, inventario y mucho más.\n Incluye un buscador inteligente de información actualizada sobre clases, especies, habilidades y trasfondos, ideal para consultar durante la creación del personaje o en mitad de una partida.\n  Inspirado en la app oficial de D&D Beyond, este proyecto va un paso más allá añadiendo funcionalidades como un sistema de notas personalizadas, organización por campañas, animaciones fluidas con Framer Motion, y una interfaz más ligera y centrada en la experiencia del usuario.",
     image: "/projects/screenshot.webp",
@@ -13,23 +32,6 @@ const PROJECTS = [
       "Tailwind",
       "JavaScript",
       "Framer-motion",
-      "JWT",
-      "Local Storage",
-    ],
-  },
-  {
-    title: "Pomello ",
-    date: "Mayo 2025 (En desarollo)",
-    description:
-      "Pomello es una potente herramienta de productividad que combina la gestión de proyectos al estilo Trello con la eficacia del método Pomodoro. Organiza tus proyectos en tableros con listas y tareas arrastrables, gracias a la integración de dnd-kit, y mantén el foco usando un cronómetro Pomodoro incorporado.\n  Cada sesión de trabajo queda registrada, permitiéndote visualizar estadísticas detalladas y gráficas sobre el tiempo invertido en cada tarea o proyecto.\n Ideal para desarrolladores, equipos ágiles o freelancers que quieran gestionar su tiempo y trabajo de forma eficiente y visual.",
-    image: "/projects/screenshot2.webp",
-    link: "",
-    github: "https://github.com/Igoruve/pomello-fullstack",
-    tags: [
-      "React",
-      "Tailwind",
-      "JavaScript",
-      "dnd-kit",
       "JWT",
       "Local Storage",
     ],
@@ -59,7 +61,9 @@ const PROJECTS = [
       <h3 class="text-xl sm:text-2xl font-bold my-4 text-slate-100">
         {project.title}
       </h3>
-      <p class="text-sm sm:text-base text-slate-500 mb-2">{project.date}</p>
+      <p class="text-sm sm:text-base text-slate-500 mb-2">
+        {project.date} | Duración: {project.duration}
+      </p>
 
       <p class="text-base sm:text-lg whitespace-pre-line text-slate-400">
         {project.description}
