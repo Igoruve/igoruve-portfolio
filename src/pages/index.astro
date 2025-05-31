@@ -23,16 +23,16 @@ import Contacto from "../components/Contacto.astro";
       class="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)]"
     >
       <p
-        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[2%] text-[clamp(3rem,60vw,200rem)] font-bold select-none z-0 whitespace-nowrap pointer-events-none"
+        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[2%] text-[clamp(3rem,70vw,200rem)] font-bold select-none z-0 whitespace-nowrap pointer-events-none"
       >
         UVE
       </p>
 
-      <div class="px-4 w-full lg:w-[740px] mx-auto pt-24">
+      <div class="px-4 sm:px-20 w-full lg:w-[740px] mx-auto pt-24 justify-center ">
         <div class="flex flex-col sm:flex-row gap-4 items-center">
           <div class="relative group">
             <img
-              class="rounded-full w-20 h-20 cursor-none"
+              class="rounded-full w-20 h-20 cursor-none border-b-2 border-pink-500"
               src={perfil.src}
               alt="igoruve profile pic"
             />
@@ -45,7 +45,7 @@ import Contacto from "../components/Contacto.astro";
 
           <Badge>Disponible para trabajar</Badge>
         </div>
-        <div class="text-center sm:text-start mt-6">
+        <div class="text-center sm:text-start mt-6 ">
           <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4">
             Holi, soy igoruve
           </h1>

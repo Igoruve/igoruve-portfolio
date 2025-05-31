@@ -5,8 +5,7 @@
 @tailwind utilities;
 
 @layer utilities {
-    .shadow-inner-custom {
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
-    }
+  .shadow-inner-custom {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
   }
-  
+}
