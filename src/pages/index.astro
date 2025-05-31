@@ -20,8 +20,14 @@ import Contacto from "../components/Contacto.astro";
 >
   <main>
     <section
-      class="w-full h-screen flex justify-center items-center bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)]"
+      class="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)]"
     >
+      <p
+        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[2%] text-[clamp(3rem,60vw,200rem)] font-bold select-none z-0 whitespace-nowrap pointer-events-none"
+      >
+        UVE
+      </p>
+
       <div class="px-4 w-full lg:w-[740px] mx-auto pt-24">
         <div class="flex flex-col sm:flex-row gap-4 items-center">
           <div class="relative group">
@@ -31,7 +37,7 @@ import Contacto from "../components/Contacto.astro";
               alt="igoruve profile pic"
             />
             <div
-              class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-sm bg-emerald-500 text-white rounded opacity-0 group-hover:opacity-90 transition-opacity duration-300 whitespace-nowrap"
+              class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-sm bg-emerald-500 text-white rounded-full opacity-0 group-hover:opacity-90 transition-opacity duration-300 whitespace-nowrap"
             >
               Uy! :D
             </div>
@@ -51,6 +57,20 @@ import Contacto from "../components/Contacto.astro";
         </div>
         <Contacto />
       </div>
+
+      <a href="#proyectos">
+        <svg
+          viewBox="0 0 384 512"
+          width="36"
+          height="36"
+          fill="currentColor"
+          class="absolute bottom-6 right-1/2 text-white/60 bg-white/10 rounded-full p-2 shadow-lg hover:bg-white/20 transition-colors duration-300 cursor-pointer"
+        >
+          <path
+            d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7L86.6 329.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128z"
+          ></path></svg
+        >
+      </a>
     </section>
 
     <SectionContainer id="proyectos">
@@ -60,6 +80,7 @@ import Contacto from "../components/Contacto.astro";
       </div>
       <Proyectos />
     </SectionContainer>
+
     <div
       id="sobremi"
       class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0"
