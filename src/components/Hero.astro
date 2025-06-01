@@ -17,14 +17,16 @@ import perfil from "/public/fotoperfil.webp";
     <div class="flex flex-col sm:flex-row gap-4 items-center">
       <div class="relative group">
         <img
+          id="profile-pic"
           class="rounded-full w-20 h-20 cursor-none border-b-2 border-pink-500"
           src={perfil.src}
           alt="igoruve profile pic"
         />
         <div
+          id="tooltip"
           class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-sm bg-emerald-500 text-white rounded-full opacity-0 group-hover:opacity-90 transition-opacity duration-300 whitespace-nowrap"
         >
-          Uy! :D
+          Uy! :O
         </div>
       </div>
 
@@ -42,4 +44,16 @@ import perfil from "/public/fotoperfil.webp";
     </header>
     <Contacto />
   </div>
+  <script is:inline>
+    const pic = document.getElementById("profile-pic");
+    const tooltip = document.getElementById("tooltip");
+
+    const messages = ["Uy! :O", "Holi! :)", "Te quedas? :D", "Byeee! :("];
+    let counter = 0;
+
+    pic.addEventListener("mouseenter", () => {
+      tooltip.textContent = messages[counter];
+      counter = (counter + 1) % messages.length;
+    });
+  </script>
 </section>
