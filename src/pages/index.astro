@@ -1,5 +1,5 @@
 ---
-import Badge from "../components/Badge.astro";
+import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 import perfil from "/public/fotoperfil.webp";
 import Linkedin from "../components/icons/Linkedin.astro";
@@ -9,9 +9,9 @@ import SectionContainer from "../components/SectionContainer.astro";
 import Proyectos from "../components/Proyectos.astro";
 import Code from "../components/icons/Code.astro";
 import Person from "../components/icons/Person.astro";
-
 import Sobremi from "../components/Sobremi.astro";
 import Contacto from "../components/Contacto.astro";
+import ScrollDown from "../components/ScrollDown.astro";
 ---
 
 <Layout
@@ -19,59 +19,8 @@ import Contacto from "../components/Contacto.astro";
   description="Portfolio de igoruve, desarrollador y programador frontend. Especializado en interfaz y experiencia de usuario."
 >
   <main>
-    <section
-      class="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)]"
-    >
-      <p
-        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[2%] text-[clamp(3rem,70vw,200rem)] font-bold select-none z-0 whitespace-nowrap pointer-events-none"
-      >
-        UVE
-      </p>
-
-      <div class="px-4 sm:px-20 w-full lg:w-[740px] mx-auto pt-24 justify-center ">
-        <div class="flex flex-col sm:flex-row gap-4 items-center">
-          <div class="relative group">
-            <img
-              class="rounded-full w-20 h-20 cursor-none border-b-2 border-pink-500"
-              src={perfil.src}
-              alt="igoruve profile pic"
-            />
-            <div
-              class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-sm bg-emerald-500 text-white rounded-full opacity-0 group-hover:opacity-90 transition-opacity duration-300 whitespace-nowrap"
-            >
-              Uy! :D
-            </div>
-          </div>
-
-          <Badge>Disponible para trabajar</Badge>
-        </div>
-        <div class="text-center sm:text-start mt-6 ">
-          <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4">
-            Holi, soy igoruve
-          </h1>
-          <h2 class="text-white/90 text-xl sm:text-2xl">
-            <strong class="text-emerald-600">Desarrollador Frontend</strong> de Bilbao.
-            <br />
-            Especializado en Interfaz y Experiencia de Usuario.
-          </h2>
-        </div>
-        <Contacto />
-      </div>
-
-      <a href="#proyectos">
-        <svg
-          viewBox="0 0 384 512"
-          width="36"
-          height="36"
-          fill="currentColor"
-          class="absolute bottom-6 right-1/2 text-white/60 bg-white/10 rounded-full p-2 shadow-lg hover:bg-white/20 transition-colors duration-300 cursor-pointer"
-        >
-          <path
-            d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7L86.6 329.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128z"
-          ></path></svg
-        >
-      </a>
-    </section>
+    <Hero />
+    <ScrollDown />
 
     <SectionContainer id="proyectos">
       <div class="flex flex-row gap-x-3 items-center text-white/90">
@@ -81,7 +30,7 @@ import Contacto from "../components/Contacto.astro";
       <Proyectos />
     </SectionContainer>
 
-    <div
+    <SectionContainer
       id="sobremi"
       class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0"
     >
@@ -90,13 +39,13 @@ import Contacto from "../components/Contacto.astro";
         <h2 class="self-start text-2xl sm:text-3xl">Sobre mí</h2>
       </div>
       <Sobremi />
-    </div>
+    </SectionContainer>
 
-    <div
+    <SectionContainer
       id="contacto"
       class="justify-center items-center flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0 pb-24"
     >
       <Contacto />
-    </div>
+    </SectionContainer>
   </main>
 </Layout>
