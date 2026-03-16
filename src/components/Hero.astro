@@ -48,12 +48,22 @@ import perfil from "/public/fotoperfil.webp";
     const pic = document.getElementById("profile-pic");
     const tooltip = document.getElementById("tooltip");
 
-    const messages = ["Uy! :O", "Holi! :)", "Te quedas? :D", "Byeee! :("];
-    let counter = 0;
+    const messages = [
+      "Uy! :O",
+      "Holi! :)",
+      "Te quedas? :D",
+      "Byeee! :(",
+      "No me toques! >:(",
+      "Otra vez tu...",
+      "Pssst! Contratame!",
+      "Eso ha dolido D:",
+      "Para ya!! xD",
+      "Sigue, me gusta :)",
+    ];
 
     pic.addEventListener("mouseenter", () => {
-      tooltip.textContent = messages[counter];
-      counter = (counter + 1) % messages.length;
+      const idx = Math.floor(Math.random() * messages.length);
+      tooltip.textContent = messages[idx];
     });
   </script>
 </section>
