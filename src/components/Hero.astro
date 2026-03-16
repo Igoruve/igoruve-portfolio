@@ -1,0 +1,69 @@
+---
+import Badge from "../components/Badge.astro";
+import Contacto from "../components/Contacto.astro";
+import perfil from "/public/fotoperfil.webp";
+---
+
+<section
+  class="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[radial-gradient(125%_125%_at_50%_10%,#020618_40%,#10B981_100%)]"
+>
+  <p
+    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[2%] text-[clamp(3rem,70vw,200rem)] font-bold select-none z-0 whitespace-nowrap pointer-events-none"
+  >
+    UVE
+  </p>
+
+  <div class="px-4 sm:px-20 w-full lg:w-[740px] mx-auto pt-24 justify-center">
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      <div class="relative group">
+        <img
+          id="profile-pic"
+          class="rounded-full w-20 h-20 cursor-none border-b-2 border-pink-500"
+          src={perfil.src}
+          alt="igoruve profile pic"
+        />
+        <div
+          id="tooltip"
+          class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-sm bg-emerald-500 text-white rounded-full opacity-0 group-hover:opacity-90 transition-opacity duration-300 whitespace-nowrap"
+        >
+          Uy! :O
+        </div>
+      </div>
+
+      <Badge>Disponible para trabajar</Badge>
+    </div>
+    <header class="text-center sm:text-start mt-6">
+      <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4">
+        Holi, soy igoruve
+      </h1>
+      <h2 class="text-white/90 text-xl sm:text-2xl">
+        <strong class="text-emerald-600">Desarrollador Fullstack</strong> de Bilbao.
+        <br />
+        Especializado en Interfaz y Experiencia de Usuario.
+      </h2>
+    </header>
+    <Contacto />
+  </div>
+  <script is:inline>
+    const pic = document.getElementById("profile-pic");
+    const tooltip = document.getElementById("tooltip");
+
+    const messages = [
+      "Uy! :O",
+      "Holi! :)",
+      "Te quedas? :D",
+      "Byeee! :(",
+      "No me toques! >:(",
+      "Otra vez tu...",
+      "Pssst! Contratame!",
+      "Eso ha dolido D:",
+      "Para ya!! xD",
+      "Sigue, me gusta :)",
+    ];
+
+    pic.addEventListener("mouseenter", () => {
+      const idx = Math.floor(Math.random() * messages.length);
+      tooltip.textContent = messages[idx];
+    });
+  </script>
+</section>

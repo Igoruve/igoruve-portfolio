@@ -1,0 +1,93 @@
+---
+const PROJECTS = [
+  {
+    title: "Dragon's Vault",
+    date: "Enero 2025",
+    duration: "En desarrollo",
+    description:
+      "Dragon's Vault es una wiki PWA para Dungeons & Dragons 5e diseñada para uso privado con mis grupos de juego. Permite consultar hechizos, objetos mágicos, clases y subclases con filtros avanzados, y gestionar campañas con sistema de sesiones, posts enriquecidos y subida de imágenes.\n\nHa sido mi proyecto más ambicioso hasta la fecha: diseño mobile-first optimizado para iPad en mesa, arquitectura de base de datos normalizada con más de 30 tablas en PostgreSQL, autenticación con RLS a nivel de fila, y un sistema de datos que modela con precisión las reglas del juego.\n\nEl acceso es privado por naturaleza del contenido, pero puedes ver la app con las credenciales disponibles en el enlace.",
+    image: "/projects/classes.png",
+    link: "https://dnd-wiki-sable.vercel.app/login",
+    github: null,
+    tags: [
+      "Next.js 14",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Tailwind",
+    ],
+    demo: { user: "demo@dragonsvault.app", password: "demo1234" },
+  },
+];
+---
+
+{
+  PROJECTS.map((project) => (
+    <article class="bg-slate-800 p-4 sm:p-6 rounded-lg my-12 sm:my-24 shadow-md">
+      {project.link ? (
+        <a href={project.link} target="_blank" rel="noopener noreferrer">
+          <img
+            src={project.image}
+            alt={`Captura de pantalla del proyecto ${project.title}`}
+            class="w-full object-cover rounded-t-lg"
+          />
+        </a>
+      ) : (
+        <img
+          src={project.image}
+          alt={`Captura de pantalla del proyecto ${project.title}`}
+          class="w-full object-cover rounded-t-lg"
+        />
+      )}
+
+      <h3 class="text-xl sm:text-2xl font-bold my-4 text-slate-100">
+        {project.title}
+      </h3>
+      <p class="text-sm sm:text-base text-slate-500 mb-2">
+        {project.date} | Duración: {project.duration}
+      </p>
+
+      <p class="text-base sm:text-lg whitespace-pre-line text-slate-400">
+        {project.description}
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-between my-8 gap-2 sm:gap-0">
+        {project.link ? (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={project.link}
+            class="text-emerald-500 underline"
+          >
+            Ver Proyecto
+          </a>
+        ) : (
+          <span class="text-slate-500 text-md" />
+        )}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={project.github}
+          class="text-emerald-500 underline"
+        >
+          Ver en GitHub
+        </a>
+      </div>
+
+      {project.demo && (
+  <div class="text-sm text-slate-500 mb-4 flex flex-col">
+   <p>Usuario: <span class="text-slate-300">{project.demo.user}</span></p>
+   <p>Contraseña: <span class="text-slate-300">{project.demo.password}</span></p>
+  </div>
+)}
+
+      <ul class="flex flex-wrap gap-2">
+        {project.tags.map((tag) => (
+          <li class=" text-gray-300 px-3 py-1 text-sm sm:text-base rounded-full">
+            <span class="text-emerald-400 font-semibold"># </span> {tag}
+          </li>
+        ))}
+      </ul>
+    </article>
+  ))
+}

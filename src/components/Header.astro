@@ -1,16 +1,20 @@
 ---
-import perfil from '../assets/foto-perfil.jpg';
+const estilo = "hover:text-emerald-300 transition-all ease-in-out duration-300 text-white/80";
 ---
 
-<header class="flex justify-between items-center py-3 w-[1120px] mx-auto">
-
-    <img class="rounded-full w-20 h-20" src={perfil.src} alt="igoruve profile pic">
-
-    <nav class="flex flex-row gap-4 opacity-80">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/projects">Projects</a>
-        <a href="/contact">Contact</a>
+<header class="flex justify-center items-center py-3 pt-12 fixed top-0 left-0 right-0 z-50">
+    <nav class="flex flex-row gap-6 text-lg lg:text-xl rounded-full px-6 py-2 overflow-x-auto whitespace-nowrap"
+    style={{
+        backgroundColor: "rgba(2, 6, 24, 0.25)",
+        border: "1px solid rgba(16, 185, 129, 0.18)",
+        backdropFilter: "blur(24px) saturate(160%)",
+        WebkitBackdropFilter: "blur(24px) saturate(160%)",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)",
+    }}
+    >
+        <a class={estilo} href="#top">Inicio</a>
+        <a class={estilo} href="#proyectos">Proyectos</a>
+        <a class={estilo} href="#sobremi">Sobre mí</a>
+        <a class={estilo} href="#contacto">Contacto</a>
     </nav>
-
 </header>

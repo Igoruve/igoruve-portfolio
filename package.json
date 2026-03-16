@@ -11,6 +11,11 @@
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
     "@fontsource-variable/onest": "^5.2.8",
-    "astro": "^5.7.13"
+    "astro": "^5.9.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.12"
   }
 }

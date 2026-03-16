@@ -1,40 +1,58 @@
 ---
-import Header from '../components/Header.astro';
-import "@fontsource-variable/onest"
-import global from '../styles/global.css';
+import Header from "../components/Header.astro";
+import "@fontsource-variable/onest";
+import global from "../styles/global.css";
+const { description, title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Portfolio igoruve</title>
-	</head>
-	<body>
-		<Header />
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/fotoperfil.webp" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+  </body>
 </html>
 
 <style is:global>
+  :root {
+    color-scheme: light dark;
+  }
 
-:root{
-	color-scheme: light dark;
-}
+  html,
+  body {
+    overflow-x: hidden;
+  }
 
-html{
-	font-family: "Onest Variable", sans-serif;
-}
+  html {
+    font-family: "Onest Variable", sans-serif;
+    scroll-behavior: smooth;
+  }
 
-body{
-	background-color: #020618;
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-	color: #F1F5F9;
-	min-height: 100vh;
-	}
+  body {
+    background-color: #020618;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 </style>

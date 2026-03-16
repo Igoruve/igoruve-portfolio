@@ -1,12 +1,51 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from "../components/Hero.astro";
+import Layout from "../layouts/Layout.astro";
+import perfil from "/public/fotoperfil.webp";
+import Linkedin from "../components/icons/Linkedin.astro";
+import GitHub from "../components/icons/GitHub.astro";
+import Email from "../components/icons/Email.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import Proyectos from "../components/Proyectos.astro";
+import Code from "../components/icons/Code.astro";
+import Person from "../components/icons/Person.astro";
+import Sobremi from "../components/Sobremi.astro";
+import Contacto from "../components/Contacto.astro";
+import ScrollDown from "../components/ScrollDown.astro";
 ---
 
-<Layout>
-<main>
-	<h1>Holi, Mi nombre es Igor</h1>
-</main>
+<Layout
+  title="Igoruve Portfolio - Desarollador y Programador Frontend"
+  description="Portfolio de igoruve, desarrollador y programador frontend. Especializado en interfaz y experiencia de usuario."
+>
+  <main>
+    <Hero />
+    <ScrollDown />
+
+    <SectionContainer id="proyectos">
+      <div class="flex flex-row gap-x-3 items-center text-white/90">
+        <Code />
+        <h2 class="text-3xl text-wrap">Proyectos</h2>
+      </div>
+      <Proyectos />
+    </SectionContainer>
+
+    <SectionContainer
+      id="sobremi"
+      class="flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0"
+    >
+      <div class="flex flex-row gap-x-3 items-center text-white/90">
+        <Person />
+        <h2 class="self-start text-2xl sm:text-3xl">Sobre mí</h2>
+      </div>
+      <Sobremi />
+    </SectionContainer>
+
+    <SectionContainer
+      id="contacto"
+      class="justify-center items-center flex flex-col gap-3 text-white/90 w-full px-4 lg:w-[740px] mx-auto pt-0 pb-24"
+    >
+      <Contacto />
+    </SectionContainer>
+  </main>
 </Layout>
