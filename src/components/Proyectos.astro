@@ -1,45 +1,22 @@
 ---
 const PROJECTS = [
   {
-    title: "Pomello ",
-    date: "Mayo 2025",
-    duration: "2 semanas",
+    title: "Dragon's Vault",
+    date: "Enero 2025",
+    duration: "En desarrollo",
     description:
-      "Pomello es una herramienta de productividad que combina la gestión de proyectos al estilo Trello con la técnica Pomodoro. Pero más allá de su funcionalidad, ha sido un proyecto muy especial para mí.\n\nLo desarrollamos en tan solo 2 semanas desde cero. Fue mi primer proyecto Fullstack usando React Router, dnd-kit y otras tecnologías que hasta entonces apenas conocía. Crear un clon funcional de Trello en tan poco tiempo ha sido todo un desafío del que estoy muy orgulloso.\n\nAdemás, he trabajado especialmente el diseño de la interfaz, buscando una experiencia de usuario limpia, visual y fluida. El apartado estético ha sido principalmente ideado por mí, y creo que transmite bien el enfoque simple pero potente de la herramienta.\n\nHa sido una experiencia de aprendizaje muy gratificante.",
-    image: "/projects/screenshot2.webp",
-    link: "https://pomello.igoruve.com/",
-    github: "https://github.com/Igoruve/pomello-fullstack",
+      "Dragon's Vault es una wiki PWA para Dungeons & Dragons 5e diseñada para uso privado con mis grupos de juego. Permite consultar hechizos, objetos mágicos, clases y subclases con filtros avanzados, y gestionar campañas con sistema de sesiones, posts enriquecidos y subida de imágenes.\n\nHa sido mi proyecto más ambicioso hasta la fecha: diseño mobile-first optimizado para iPad en mesa, arquitectura de base de datos normalizada con más de 30 tablas en PostgreSQL, autenticación con RLS a nivel de fila, y un sistema de datos que modela con precisión las reglas del juego.\n\nEl acceso es privado por naturaleza del contenido, pero puedes ver la app con las credenciales disponibles en el enlace.",
+    image: "/public/projects/classes.png",
+    link: "https://dnd-wiki-sable.vercel.app/login",
+    github: null,
     tags: [
-      "React",
+      "Next.js 14",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
       "Tailwind",
-      "MongoDB",
-      "API Rest",
-      "JavaScript",
-      "dnd-kit",
-      "JWT",
-      "Local Storage",
     ],
-  },
-  {
-    title: "Dungeons & Databases",
-    date: "Abril-Mayo 2025",
-    duration: "3 semanas",
-    description:
-      "Aplicación web Fullstack diseñada para fans de Dungeons and Dragons que buscan una herramienta completa y personalizable para gestionar sus campañas. Permite crear, editar y llevar un seguimiento detallado de personajes, con campos para estadísticas, habilidades, inventario y mucho más.\n\nHa sido un proyecto que desarrollé completamente por mi cuenta en apenas 3 semanas, desde cero. Fue también mi primera vez trabajando con MySQL, y el proceso me ha hecho aprender muchísimo, tanto a nivel de base de datos como de arquitectura general de una aplicación completa.\n\nAunque aún quedan algunas funcionalidades por implementar, estoy muy orgulloso del resultado. La interfaz es ligera, bien pensada, con animaciones fluidas gracias a Framer Motion, y con un enfoque muy centrado en la experiencia de usuario. Inspirado en D&D Beyond, pero buscando ir un paso más allá con opciones como notas personalizadas.",
-
-    image: "/projects/screenshot.webp",
-    link: "https://dnd.igoruve.com/",
-    github: "https://github.com/Igoruve/dungeons-and-databases-frontend",
-    tags: [
-      "React",
-      "Tailwind",
-      "MySQL",
-      "API Rest",
-      "JavaScript",
-      "Framer-motion",
-      "JWT",
-      "Local Storage",
-    ],
+    demo: { user: "demo@dragonsvault.app", password: "demo1234" },
   },
 ];
 ---
@@ -52,14 +29,14 @@ const PROJECTS = [
           <img
             src={project.image}
             alt={`Captura de pantalla del proyecto ${project.title}`}
-            class="w-full h-60 sm:h-96 object-cover rounded-t-lg"
+            class="w-full object-cover rounded-t-lg"
           />
         </a>
       ) : (
         <img
           src={project.image}
           alt={`Captura de pantalla del proyecto ${project.title}`}
-          class="w-full h-60 sm:h-96 object-cover rounded-t-lg"
+          class="w-full object-cover rounded-t-lg"
         />
       )}
 
@@ -96,6 +73,13 @@ const PROJECTS = [
           Ver en GitHub
         </a>
       </div>
+
+      {project.demo && (
+  <div class="text-sm text-slate-500 mb-4 flex flex-col">
+   <p>Usuario: <span class="text-slate-300">{project.demo.user}</span></p>
+   <p>Contraseña: <span class="text-slate-300">{project.demo.password}</span></p>
+  </div>
+)}
 
       <ul class="flex flex-wrap gap-2">
         {project.tags.map((tag) => (
