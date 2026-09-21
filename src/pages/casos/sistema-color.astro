@@ -1,0 +1,310 @@
+---
+// Caso de estudio autocontenido: no usa Layout.astro a proposito,
+// para que los estilos globales y Tailwind no afecten al documento.
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Del color de marca a un sistema de tokens</title>
+<meta name="description" content="Ejercicio: convertir una identidad de marca en una capa de tokens auditada.">
+<meta property="og:title" content="Del color de marca a un sistema de tokens">
+<meta property="og:description" content="Ejercicio: convertir una identidad de marca en una capa de tokens auditada.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igoruve.dev/casos/sistema-color">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style is:inline>
+:root{
+  --white:#FFFFFF;
+  --LightCold:#F2F4F8;
+  --LightWarm:#F3F2EE;
+  --Dark:#1C3037;
+  --g100:#E7F8EF; --g200:#C3EFD7; --g300:#90DFB5; --g400:#47D18C;
+  --g500:#0FBD66; --g600:#009342; --g700:#00612A; --g800:#00451E; --g900:#032A15;
+  --action:#0F803E;
+  --ink:rgba(0,0,0,.87);
+  --ink-2:rgba(0,0,0,.6);
+  --hair:rgba(28,48,55,.14);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+p{max-width:62ch;margin:0 0 1.1em}
+.lede{font-size:1.15rem;line-height:1.55;color:var(--ink)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-ligatures:none}
+
+/* hero */
+.ramp{display:flex;width:100%;height:190px}
+.ramp span{flex:1}
+.ramp-key{display:flex;max-width:none;width:100%;margin:0;border-bottom:1px solid var(--hair)}
+.ramp-key span{
+  flex:1;padding:9px 0 13px;text-align:center;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-2);
+}
+.masthead{padding:64px 0 72px}
+h1{
+  font-size:clamp(2.4rem,7vw,4.6rem);font-weight:700;line-height:.96;
+  letter-spacing:-.035em;margin:0 0 28px;max-width:16ch;color:var(--Dark);
+}
+.byline{
+  display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;
+  margin-top:36px;padding-top:22px;border-top:1px solid var(--hair);
+  font-size:.875rem;color:var(--ink-2);
+}
+.byline strong{font-weight:600;color:var(--ink)}
+.disclaimer{
+  display:inline-block;margin-top:26px;padding:12px 16px;
+  background:var(--LightCold);border-left:3px solid var(--g600);border-radius:0;
+  font-size:.875rem;line-height:1.5;color:var(--ink);max-width:56ch;
+}
+
+/* sections */
+section{padding:56px 0}
+h2{
+  font-size:1.5rem;font-weight:600;letter-spacing:-.02em;
+  margin:0 0 10px;color:var(--Dark);
+}
+h3{
+  font-size:.9375rem;font-weight:600;margin:38px 0 14px;color:var(--Dark);
+}
+h3:first-of-type{margin-top:26px}
+.sub{color:var(--ink-2);margin-bottom:30px;max-width:60ch}
+
+/* swatch spec rows */
+.spec{border-top:1px solid var(--hair)}
+.row{
+  display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
+  padding:11px 0;border-bottom:1px solid var(--hair);
+}
+.chip{width:56px;height:38px;border-radius:8px;border:1px solid rgba(28,48,55,.1)}
+.name{font-size:.9375rem;font-weight:500;line-height:1.35;color:var(--ink)}
+.name em{display:block;font-style:normal;font-weight:400;font-size:.8125rem;color:var(--ink-2)}
+.meta{display:flex;align-items:center;gap:14px;justify-content:flex-end}
+.hex{font-family:"IBM Plex Mono",monospace;font-size:.8125rem;color:var(--ink-2)}
+.ratio{font-family:"IBM Plex Mono",monospace;font-size:.8125rem;min-width:56px;text-align:right;color:var(--ink)}
+.tag{
+  font-size:.6875rem;font-weight:600;letter-spacing:.01em;padding:3px 8px;
+  border-radius:16px;min-width:76px;text-align:center;
+}
+.aaa{background:var(--g100);color:var(--g800)}
+.aa{background:var(--LightCold);color:var(--Dark)}
+.fail{background:var(--LightWarm);color:var(--ink-2);border:1px solid var(--hair)}
+
+/* applied */
+.applied{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:44px;align-items:start}
+.stage{background:var(--LightCold);padding:28px;border-radius:8px}
+.card{background:var(--white);border:1px solid var(--hair);border-radius:8px;overflow:hidden}
+.card-img{height:112px;background:var(--g100);display:flex;align-items:flex-end;padding:12px}
+.badge{background:var(--g600);color:var(--white);font-size:.75rem;font-weight:600;padding:4px 9px;border-radius:3px}
+.card-body{padding:16px}
+.card-title{font-size:.9375rem;font-weight:600;margin:0 0 3px;color:var(--ink)}
+.card-note{font-size:.8125rem;color:var(--ink-2);margin:0 0 14px}
+.price{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);line-height:1.1}
+.unit{font-size:.8125rem;color:var(--ink-2);margin:2px 0 16px}
+.btn{
+  display:block;width:100%;padding:11px;border:0;border-radius:6px;cursor:pointer;
+  background:var(--action);color:var(--white);
+  font-family:inherit;font-size:.9375rem;font-weight:600;
+  transition:background .15s ease;
+}
+.btn:hover{background:var(--g700)}
+.btn:active{background:var(--g800)}
+.btn:focus-visible{outline:2px solid var(--Dark);outline-offset:2px}
+.btn.ghost{background:transparent;color:var(--action);border:1px solid var(--g300);margin-top:8px}
+.btn.ghost:hover{background:var(--g100)}
+.btn[disabled]{background:var(--g300);color:var(--g800);cursor:not-allowed}
+.map{border-top:1px solid var(--hair)}
+.map div{
+  display:flex;justify-content:space-between;gap:20px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--hair);font-size:.875rem;
+}
+.map span:last-child{font-family:"IBM Plex Mono",monospace;font-size:.8125rem;color:var(--ink-2);text-align:right}
+
+/* states */
+.states{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+.states .btn{width:auto;min-width:132px}
+
+/* findings */
+.finding{padding:22px 0;border-bottom:1px solid var(--hair)}
+.finding:last-child{border-bottom:0;padding-bottom:0}
+.finding h3{margin:0 0 7px;font-size:1.0625rem}
+.finding p{margin:0;color:var(--ink-2);max-width:66ch}
+.finding p code{
+  font-family:"IBM Plex Mono",monospace;font-size:.8125rem;
+  background:var(--LightCold);padding:1px 5px;border-radius:3px;color:var(--Dark);
+}
+.pair{display:flex;gap:0;margin:16px 0 4px;max-width:420px;border-radius:5px;overflow:hidden}
+.pair div{flex:1;padding:16px 14px;font-size:.8125rem;font-weight:600;line-height:1.4}
+.pair .mono{display:block;font-weight:400;font-size:.75rem;opacity:.85;margin-top:3px}
+
+footer{background:var(--Dark);color:var(--white);padding:52px 0 60px;margin-top:0}
+footer h2{color:var(--white);margin-bottom:14px}
+footer p{color:rgba(255,255,255,.72);font-size:.9375rem;max-width:58ch}
+footer a{color:var(--g300);text-decoration:none;border-bottom:1px solid rgba(144,223,181,.4)}
+footer a:hover{border-bottom-color:var(--g300)}
+.colofon{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);font-size:.8125rem;color:rgba(255,255,255,.55)}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .ramp{height:120px}
+  .ramp-key span{font-size:10px}
+  .masthead{padding:44px 0 52px}
+  section{padding:44px 0}
+  .applied{grid-template-columns:1fr;gap:32px}
+  .row{grid-template-columns:44px 1fr;gap:14px}
+  .chip{width:44px;height:34px}
+  .meta{grid-column:1 / -1;justify-content:flex-start;gap:12px;flex-wrap:wrap}
+  .tag{min-width:auto}
+  .ratio{min-width:auto;text-align:left}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="ramp" role="img" aria-label="Rampa de nueve pasos del verde de marca, del más claro al más oscuro">
+  <span style="background:#E7F8EF"></span><span style="background:#C3EFD7"></span>
+  <span style="background:#90DFB5"></span><span style="background:#47D18C"></span>
+  <span style="background:#0FBD66"></span><span style="background:#009342"></span>
+  <span style="background:#00612A"></span><span style="background:#00451E"></span>
+  <span style="background:#032A15"></span>
+</div>
+<div class="ramp-key" aria-hidden="true">
+  <span>100</span><span>200</span><span>300</span><span>400</span><span>500</span>
+  <span>600</span><span>700</span><span>800</span><span>900</span>
+</div>
+
+<div class="wrap">
+
+<div class="masthead">
+  <h1>Ejercicio de un sistema de diseño y de tokens</h1>
+  <p class="lede">Este ejercicio toma la identidad pública de Mercadona y la convierte en una capa de tokens auditada, con una regla de uso y un ratio de contraste detrás de cada decisión.</p>
+  <p class="disclaimer">Ejercicio personal a partir de material público. No es un trabajo oficial, ni una propuesta de rebrand, ni refleja el sistema interno de Mercadona Tech.</p>
+</div>
+
+<section>
+  <h2>La solución</h2>
+  <p class="sub">Una identidad de marca resuelve cómo se ve la empresa. Un sistema de diseño resuelve algo distinto: qué color usa un equipo interno cuando tiene que pintar un botón deshabilitado.</p>
+  <p>Este documento construye esa capa intermedia en tres pasos: una escalera de primitivos medidos, un mapeo semántico que dice para qué sirve cada uno, y una pantalla real donde comprobar que el sistema aguanta.</p>
+</section>
+
+<section>
+  <h2>Primitivos</h2>
+  <p class="sub">Los valores en bruto. No se usan nunca directamente en un componente: existen para que la capa semántica tenga de dónde elegir. Cada paso lleva su contraste medido sobre blanco.</p>
+
+  <h3>Escalera verde</h3>
+  <div class="spec">
+    <div class="row"><span class="chip" style="background:#E7F8EF"></span><span class="name">Green 100<em>Fondos sutiles, estados hover en superficies claras</em></span><span class="meta"><span class="hex">#E7F8EF</span><span class="ratio">1,10:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#C3EFD7"></span><span class="name">Green 200<em>Fondos de aviso positivo, separadores teñidos</em></span><span class="meta"><span class="hex">#C3EFD7</span><span class="ratio">1,26:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#90DFB5"></span><span class="name">Green 300<em>Bordes de marca, estado deshabilitado</em></span><span class="meta"><span class="hex">#90DFB5</span><span class="ratio">1,57:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#47D18C"></span><span class="name">Green 400<em>Gráficos, ilustración, elementos decorativos</em></span><span class="meta"><span class="hex">#47D18C</span><span class="ratio">1,95:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#0FBD66"></span><span class="name">Green 500<em>Superficies grandes, acentos de marca</em></span><span class="meta"><span class="hex">#0FBD66</span><span class="ratio">2,47:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#009342"></span><span class="name">Green 600<em>Color de marca. Superficies y elementos gráficos</em></span><span class="meta"><span class="hex">#009342</span><span class="ratio">4,00:1</span><span class="tag aa">AA grande</span></span></div>
+    <div class="row"><span class="chip" style="background:#00612A"></span><span class="name">Green 700<em>Texto de marca, enlaces, estado hover</em></span><span class="meta"><span class="hex">#00612A</span><span class="ratio">7,66:1</span><span class="tag aaa">AAA</span></span></div>
+    <div class="row"><span class="chip" style="background:#00451E"></span><span class="name">Green 800<em>Estado pressed, texto sobre fondos verdes claros</em></span><span class="meta"><span class="hex">#00451E</span><span class="ratio">11,24:1</span><span class="tag aaa">AAA</span></span></div>
+    <div class="row"><span class="chip" style="background:#032A15"></span><span class="name">Green 900<em>Bordes fuertes, texto de máximo énfasis</em></span><span class="meta"><span class="hex">#032A15</span><span class="ratio">15,60:1</span><span class="tag aaa">AAA</span></span></div>
+  </div>
+
+  <h3>Neutros</h3>
+  <div class="spec">
+    <div class="row"><span class="chip" style="background:#FFFFFF"></span><span class="name">White<em>Superficie base de producto</em></span><span class="meta"><span class="hex">#FFFFFF</span><span class="ratio">1,00:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#F2F4F8"></span><span class="name">Light Cold<em>Neutro frío. Fondos de sección en producto</em></span><span class="meta"><span class="hex">#F2F4F8</span><span class="ratio">1,10:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#F3F2EE"></span><span class="name">Light Warm<em>Neutro cálido. Fondos de piezas de marca</em></span><span class="meta"><span class="hex">#F3F2EE</span><span class="ratio">1,12:1</span><span class="tag fail">solo fondo</span></span></div>
+    <div class="row"><span class="chip" style="background:#1C3037"></span><span class="name">Dark<em>Superficie inversa, pies de página, overlays</em></span><span class="meta"><span class="hex">#1C3037</span><span class="ratio">13,75:1</span><span class="tag aaa">AAA</span></span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Semánticos</h2>
+  <p class="sub">La capa que consume el equipo. Un primitivo dice qué color es; un token semántico dice para qué sirve. Cambiar el verde de marca mañana debería tocar una línea, no cuarenta componentes.</p>
+
+  <h3>Superficie</h3>
+  <div class="spec">
+    <div class="row"><span class="chip" style="background:#FFFFFF"></span><span class="name">surface-base<em>Fondo por defecto de página y tarjeta</em></span><span class="meta"><span class="hex">White</span></span></div>
+    <div class="row"><span class="chip" style="background:#F2F4F8"></span><span class="name">surface-subtle<em>Secciones que necesitan separarse del fondo</em></span><span class="meta"><span class="hex">Light Cold</span></span></div>
+    <div class="row"><span class="chip" style="background:#009342"></span><span class="name">surface-brand<em>Bloques de marca, cabeceras promocionales</em></span><span class="meta"><span class="hex">Green 600</span></span></div>
+    <div class="row"><span class="chip" style="background:#1C3037"></span><span class="name">surface-inverse<em>Pie de página, barras de herramientas oscuras</em></span><span class="meta"><span class="hex">Dark</span></span></div>
+  </div>
+
+  <h3>Texto</h3>
+  <div class="spec">
+    <div class="row"><span class="chip" style="background:rgba(0,0,0,.87)"></span><span class="name">text-primary<em>Cuerpo, títulos, precios</em></span><span class="meta"><span class="hex">rgba(0,0,0,.87)</span><span class="ratio">16,1:1</span><span class="tag aaa">AAA</span></span></div>
+    <div class="row"><span class="chip" style="background:rgba(0,0,0,.6)"></span><span class="name">text-secondary<em>Metadatos, precio por unidad, ayuda</em></span><span class="meta"><span class="hex">rgba(0,0,0,.6)</span><span class="ratio">5,74:1</span><span class="tag aa">AA</span></span></div>
+    <div class="row"><span class="chip" style="background:#0F803E"></span><span class="name">text-brand<em>Enlaces y acciones en texto</em></span><span class="meta"><span class="hex">#0F803E</span><span class="ratio">5,03:1</span><span class="tag aa">AA</span></span></div>
+    <div class="row"><span class="chip" style="background:#FFFFFF"></span><span class="name">text-on-brand<em>Texto sobre action-primary</em></span><span class="meta"><span class="hex">White</span><span class="ratio">5,03:1</span><span class="tag aa">AA</span></span></div>
+  </div>
+
+  <h3>Acción</h3>
+  <div class="spec">
+    <div class="row"><span class="chip" style="background:#0F803E"></span><span class="name">action-primary<em>Botón principal en reposo</em></span><span class="meta"><span class="hex">#0F803E</span><span class="ratio">5,03:1</span><span class="tag aa">AA</span></span></div>
+    <div class="row"><span class="chip" style="background:#00612A"></span><span class="name">action-primary-hover<em>Un paso más oscuro en la rampa</em></span><span class="meta"><span class="hex">Green 700</span><span class="ratio">7,66:1</span><span class="tag aaa">AAA</span></span></div>
+    <div class="row"><span class="chip" style="background:#00451E"></span><span class="name">action-primary-pressed<em>Dos pasos. Confirma el clic sin animación</em></span><span class="meta"><span class="hex">Green 800</span><span class="ratio">11,24:1</span><span class="tag aaa">AAA</span></span></div>
+    <div class="row"><span class="chip" style="background:#90DFB5"></span><span class="name">action-disabled<em>Con texto Green 800 encima, no gris</em></span><span class="meta"><span class="hex">Green 300</span><span class="ratio">6,54:1</span><span class="tag aa">AA</span></span></div>
+  </div>
+
+  <h3>Borde</h3>
+  <div class="spec">
+    <div class="row"><span class="chip" style="background:#F2F4F8;border-color:rgba(28,48,55,.22)"></span><span class="name">border-subtle<em>Separadores, contorno de tarjeta</em></span><span class="meta"><span class="hex">Dark 14%</span></span></div>
+    <div class="row"><span class="chip" style="background:#90DFB5"></span><span class="name">border-brand<em>Botón secundario, campo con foco</em></span><span class="meta"><span class="hex">Green 300</span></span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Aplicado</h2>
+  <p class="sub">Una tarjeta de producto usando solo tokens semánticos. Ningún hex escrito a mano en el componente: si mañana cambia la marca, esta tarjeta cambia sola.</p>
+  <div class="applied">
+    <div class="stage">
+      <div class="card">
+        <div class="card-img"><span class="badge">Novedad</span></div>
+        <div class="card-body">
+          <p class="card-title">Leche entera</p>
+          <p class="card-note">Brick 1 L, pack de 6</p>
+          <p class="price">5,70 €</p>
+          <p class="unit">0,95 € por litro</p>
+          <button class="btn">Añadir a la cesta</button>
+          <button class="btn ghost">Ver detalle</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="map">
+        <div><span>Fondo de la sección</span><span>surface-subtle</span></div>
+        <div><span>Fondo de la tarjeta</span><span>surface-base</span></div>
+        <div><span>Contorno de la tarjeta</span><span>border-subtle</span></div>
+        <div><span>Etiqueta «Novedad»</span><span>surface-brand + text-on-brand</span></div>
+        <div><span>Nombre y precio</span><span>text-primary</span></div>
+        <div><span>Formato y precio por litro</span><span>text-secondary</span></div>
+        <div><span>Botón «Añadir a la cesta»</span><span>action-primary</span></div>
+        <div><span>Botón «Ver detalle»</span><span>border-brand + text-brand</span></div>
+      </div>
+      <p style="margin-top:22px;font-size:.9375rem;color:var(--ink-2)">La etiqueta «Novedad» es el único sitio donde aparece el verde de marca puro. Es una superficie pequeña con texto grande y en negrita, el único contexto donde <span class="mono" style="font-size:.8125rem">Green 600</span> cumple contraste.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Hecho por <strong style="color:#fff;font-weight:600">Igor A. Sarmiento</strong>, product designer en Bilbao. <a href="mailto:igoruve@gmail.com">igoruve@gmail.com</a></p>
+    <p class="colofon">Ejercicio conceptual a partir de material público. Sin relación oficial con Mercadona ni Mercadona Tech. Septiembre de 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>
